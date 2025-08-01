@@ -9,6 +9,21 @@ const bitHumorQuotes = [
     "Why was the bit cold? It left its Windows open."
 ];
 
+window.onload = function () {
+    const quoteElement = document.getElementById("bithumor-quote");
+    if (!quoteElement) return;
+
+    let currentIndex = 0;
+
+    function rotateQuote() {
+        quoteElement.textContent = bitHumorQuotes[currentIndex];
+        currentIndex = (currentIndex + 1) % bitHumorQuotes.length;
+    }
+
+    rotateQuote(); // Show first quote immediately
+    setInterval(rotateQuote, 4000); // Rotate every 4 seconds
+};
+
 let quoteIndex = 0;
 function rotateQuote() {
     document.getElementById('bithumor-quote').textContent = bitHumorQuotes[quoteIndex];
