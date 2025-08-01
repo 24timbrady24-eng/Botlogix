@@ -1,256 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>BotLogix™ Dashboard</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0a0f1a 0%, #1a2a3a 100%);
-      color: #e0e0e0;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      color: #00ffcc;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      animation: pulse 2s infinite alternate;
-    }
-    @keyframes pulse {
-      from { text-shadow: 0 0 5px #00ffcc; }
-      to { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; }
-    }
-    p {
-      font-size: 1.1em;
-      margin: 5px 0;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-      transition: transform 0.3s ease;
-    }
-    img:hover {
-      transform: scale(1.05);
-    }
-    .module {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 255, 204, 0.2);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 15px 0;
-      backdrop-filter: blur(5px);
-    }
-    .ticker {
-      font-style: italic;
-      color: #00ffcc;
-      animation: trace 3s infinite linear;
-    }
-    @keyframes trace {
-      0% { text-shadow: 0 0 0 #00ffcc; }
-      50% { text-shadow: 0 0 10px #00ffcc; }
-      100% { text-shadow: 0 0 0 #00ffcc; }
-    }
-    .nav-bar {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      gap: 10px;
-      z-index: 1000;
-    }
-    .nav-btn {
-      background: #00ffcc;
-      color: #0a0f1a;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    .nav-btn:hover {
-      background: #00cc99;
-      transform: translateY(-2px);
-    }
-    .edit-panel {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 10px;
-      border-radius: 5px;
-      display: none;
-      color: #00ffcc;
-    }
-    .edit-panel.active {
-      display: block;
-    }
-    canvas {
-      display: none;
-    }
-    .graph, .pulse {
-      height: 200px;
-      background: rgba(0, 0, 0, 0.3);
-      margin: 10px 0;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotLogix™ Product DNA Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div class="nav-bar">
-    <button class="nav-btn">SKULL Control Panel</button>
-    <button class="nav-btn">Run Diagnostic</button>
-    <button class="nav-btn">Deploy BibBot</button>
-    <button class="nav-btn">Export PTVR Report</button>
-  </div>
-  <div class="container">
-    <h1>Product DNA Dashboard</h1>
-    <p>Welcome to the SKULL Revolution!</p>
-    <p>SKULL Neural Brain:</p>
-    <img src="https://via.placeholder.com/400x300?text=SKULL+Neural+Graph" alt="Product DNA Dashboard">
-    <p>Status: SKULL-AF-001 PTVR: 92 (Evolving...)</p>
-
-    <!-- Lifebits™ Journal Feed -->
-    <div class="module">
-      <h2>Lifebits™ Journal Feed</h2>
-      <p>Auto-logged BibBot Action: SKU-001 optimized at 12:35 PM EDT</p>
-      <p>Next Action: SKU-002 analysis scheduled for 12:50 PM EDT</p>
-    </div>
-
-    <!-- SKU Health Graph -->
-    <div class="module graph">
-      <h2>SKU Health Graph</h2>
-      <canvas id="skuHealthChart"></canvas>
-    </div>
-
-    <!-- Hidden Cost Analyzer™ -->
-    <div class="module">
-      <h2>Hidden Cost Analyzer™</h2>
-      <p>Live Savings: $150 vs Human Estimate: $200</p>
-      <p>Savings Trend: <span style="color: #00ffcc;">+5%</span></p>
-    </div>
-
-    <!-- Valuebit Wallet View -->
-    <div class="module">
-      <h2>Valuebit Wallet</h2>
-      <p>Earned: 120 VB | Decay: -5 VB/day</p>
-      <p>Net Value: <span style="color: #00ffcc;">115 VB</span></p>
-    </div>
-
-    <!-- SKU Comparison Panel -->
-    <div class="module">
-      <h2>SKU Comparison</h2>
-      <p>SKU-001 vs Baseline: PTVR 92 vs 85</p>
-      <p>SKU-001 vs Competitor: PTVR 92 vs 88</p>
-    </div>
-
-    <!-- BitHumor™ Quote Ticker -->
-    <div class="module ticker">
-      <h2>BitHumor™ Quote</h2>
-      <p>"Why did the SKU go to therapy? It had too many identity crises!"</p>
-    </div>
-
-    <!-- Engagement Pulse -->
-    <div class="module pulse">
-      <h2>Engagement Pulse</h2>
-      <p>Social: 75% | Collateral: 60% | Sentiment: +0.8</p>
-    </div>
-  </div>
-
-  <div class="edit-panel" id="grokEditPanel">
-    <textarea id="editText" rows="4" cols="50" placeholder="Edit dashboard copy here..."></textarea>
-    <button onclick="saveEdit()">Save</button>
-    <button onclick="cancelEdit()">Cancel</button>
-  </div>
-
-  <canvas id="canvas" width="800" height="600"></canvas>
-
-  <script>
-    // SKU Health Graph
-    const ctx = document.getElementById('skuHealthChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['Jul 25', 'Jul 26', 'Jul 27', 'Jul 28', 'Jul 29', 'Jul 30', 'Aug 01'],
-        datasets: [{
-          label: 'PTVR Trend',
-          data: [85, 87, 89, 90, 91, 91.5, 92],
-          borderColor: '#00ffcc',
-          borderWidth: 2,
-          fill: false,
-          tension: 0.4,
-          pointBackgroundColor: '#00ffcc',
-          pointRadius: 4,
-          pointHoverRadius: 6
-        }]
-      },
-      options: {
-        scales: { y: { beginAtZero: false, max: 100 } },
-        plugins: { legend: { labels: { color: '#e0e0e0' } } },
-        responsive: true
-      }
-    });
-
-    // Grok Edit Panel
-    let editPanel = document.getElementById('grokEditPanel');
-    let editText = document.getElementById('editText');
-    document.querySelectorAll('.module h2, .module p').forEach(element => {
-      element.addEventListener('click', () => {
-        editText.value = element.textContent;
-        editPanel.classList.add('active');
-      });
-    });
-
-    function saveEdit() {
-      let selected = document.querySelector('.module h2:focus, .module p:focus');
-      if (selected) selected.textContent = editText.value;
-      editPanel.classList.remove('active');
-    }
-
-    function cancelEdit() {
-      editPanel.classList.remove('active');
-    }
-
-    // BitHumor™ Quote Rotation
-    const quotes = [
-      "Why did the SKU go to therapy? It had too many identity crises!",
-      "SKU said to PTVR, 'You complete me!'",
-      "What’s a SKU’s favorite dance? The barcode boogie!"
-    ];
-    let quoteIndex = 0;
-    setInterval(() => {
-      let ticker = document.querySelector('.ticker p');
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      ticker.textContent = quotes[quoteIndex];
-    }, 5000);
-
-    // Canvas for Sentient Feel (Minimal Animation)
-    const canvas = document.getElementById('canvas');
-    const ctxCanvas = canvas.getContext('2d');
-    function drawGlyph() {
-      ctxCanvas.clearRect(0, 0, canvas.width, canvas.height);
-      ctxCanvas.beginPath();
-      ctxCanvas.moveTo(400, 300);
-      ctxCanvas.lineTo(420, 280);
-      ctxCanvas.lineTo(440, 300);
-      ctxCanvas.strokeStyle = '#00ffcc';
-      ctxCanvas.lineWidth = 2;
-      ctxCanvas.stroke();
-      ctxCanvas.closePath();
-    }
-    setInterval(drawGlyph, 2000);
-  </script>
+    <header>
+        <h1>BotLogix™ Product DNA Dashboard</h1>
+        <div id="bithumor-quote" class="bithumor">Loading BitHumor™...</div>
+    </header>
+    
+    <main>
+        <section id="ptvr-display">
+            <h2>PTVR Display (Product Timeline Visual Representation)</h2>
+            <div class="timeline">
+                <div class="timeline-item">Phase 1: Ideation <span class="status">Complete</span></div>
+                <div class="timeline-item">Phase 2: Development <span class="status">In Progress</span></div>
+                <div class="timeline-item">Phase 3: Deployment <span class="status">Pending</span></div>
+                <div class="timeline-item">Phase 4: Maintenance <span class="status">Pending</span></div>
+            </div>
+        </section>
+        
+        <section id="bibbot-controls">
+            <h2>BibBot Deployment Controls</h2>
+            <button onclick="deployBibBot()">Deploy BibBot</button>
+            <button onclick="checkBibBotStatus()">Check Status</button>
+            <div id="bibbot-status">Status: Idle</div>
+        </section>
+        
+        <section id="sku-health-graph">
+            <h2>SKU Health Graph</h2>
+            <select id="sku-select" onchange="updateSKU()">
+                <option value="SKU-TEST">SKU-TEST (Default)</option>
+                <option value="SKU-001">SKU-001</option>
+            </select>
+            <canvas id="skuChart" width="400" height="200"></canvas>
+        </section>
+        
+        <section id="lifebits">
+            <h2>Lifebits™</h2>
+            <ul id="lifebits-list">
+                <!-- Populated via JS -->
+            </ul>
+        </section>
+        
+        <section id="hidden-cost-analyzer">
+            <h2>Hidden Cost Analyzer™</h2>
+            <input type="number" id="cost-input" placeholder="Enter base cost">
+            <button onclick="analyzeCosts()">Analyze</button>
+            <div id="cost-output">Hidden Costs: N/A</div>
+        </section>
+        
+        <section id="huddle-room-triggers">
+            <h2>Huddle Room Triggers</h2>
+            <button onclick="launchHuddleRoom()">Launch Huddle Room</button>
+            <div id="huddle-status">Ready for launch</div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Powered by Dashboard Sim Engine™ | © 2025 BitBot Labs</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
 </html>
