@@ -2,38 +2,45 @@
 
 // BitHumor™ Quotes Rotation
 const bitHumorQuotes = [
-    "Why did the bit flip? To get to the other side!",
-    "Bits walk into a bar: 'We're feeling a bit off today.'",
-    "A bit's favorite music? Binary beats.",
-    "Don't trust atoms, they make up everything... but bits make up data!",
-    "Why was the bit cold? It left its Windows open."
+  "Why did the bit flip? To get to the other side!",
+  "Bits walk into a bar: 'We're feeling a bit off today.'",
+  "A bit's favorite music? Binary beats.",
+  "Don't trust atoms, they make up everything... but bits make up data!",
+  "Why was the bit cold? It left its Windows open."
 ];
 
 let quoteIndex = 0;
+
 function rotateQuote() {
-    document.getElementById('bithumor-quote').textContent = bitHumorQuotes[quoteIndex];
+  const el = document.getElementById('bithumor-quote');
+  if (el) {
+    el.textContent = bitHumorQuotes[quoteIndex];
     quoteIndex = (quoteIndex + 1) % bitHumorQuotes.length;
+  }
 }
-setInterval(rotateQuote, 5000); // Rotate every 5 seconds
-rotateQuote(); // Initial call
+
+window.onload = function () {
+  rotateQuote(); // Initial call
+  setInterval(rotateQuote, 5000); // Rotate every 5 seconds
+};
 
 // BibBot Deployment Controls (Simulated)
 function deployBibBot() {
-    document.getElementById('bibbot-status').textContent = 'Status: Deploying...';
-    setTimeout(() => {
-        document.getElementById('bibbot-status').textContent = 'Status: Deployed Successfully!';
-    }, 2000);
+  document.getElementById('bibbot-status').textContent = 'Status: Deploying...';
+  setTimeout(() => {
+    document.getElementById('bibbot-status').textContent = 'Status: Deployed Successfully!';
+  }, 2000);
 }
 
 function checkBibBotStatus() {
-    document.getElementById('bibbot-status').textContent = 'Status: Online and Operational';
+  document.getElementById('bibbot-status').textContent = 'Status: Online and Operational';
 }
 
 // SKU Health Graph (Using Chart.js with simulated data)
 let skuChart;
 const skuData = {
-    'SKU-TEST': [80, 90, 70, 85, 95], // Health scores over time
-    'SKU-001': [60, 75, 50, 65, 80]
+  'SKU-TEST': [80, 90, 70, 85, 95], // Health scores over time
+  'SKU-001': [60, 75, 50, 65, 80]
 };
 
 function updateSKU() {
